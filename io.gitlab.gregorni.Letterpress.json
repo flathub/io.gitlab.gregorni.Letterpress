@@ -1,7 +1,7 @@
 {
     "app-id" : "io.gitlab.gregorni.Letterpress",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "47",
+    "runtime-version" : "49",
     "sdk" : "org.gnome.Sdk",
     "command" : "letterpress",
     "finish-args" : [
@@ -23,41 +23,58 @@
     ],
     "modules" : [
     	{
-  	    "name": "blueprint-compiler",
-  	    "buildsystem": "meson",
-  	    "cleanup": [ "*" ],
-  	    "sources": [
-	  	{
-	      	    "type": "git",
-	      	    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-	      	    "tag": "v0.12.0"
-	    	}
-	    ]
-	},
+			"name": "blueprint-compiler",
+			"buildsystem": "meson",
+			"cleanup": [ "*" ],
+			"sources": [
+				{
+					"type": "git",
+					"url": "https://gitlab.gnome.org/GNOME/blueprint-compiler",
+					"tag": "v0.18.0"
+				}
+			]
+		},
+		{
+		    "name": "artem",
+		    "builddir": true,
+		    "buildsystem": "simple",
+		    "build-commands": [
+		        "tar -xf *.tar.gz",
+		        "install -Dm755 artem -t /app/bin"
+		    ],
+		    "sources": [
+		        {
+		            "type": "file",
+		            "url": "https://github.com/FineFindus/artem/releases/download/v3.0.0/artem-v3.0.0-aarch64-unknown-linux-gnu.tar.gz",
+		            "sha256": "33ec4eef6d9e26fd39d0f189b3db81d25723b26eb82ea452c763f097dff34cac",
+		            "only-arches": [
+		                "aarch64"
+		            ]
+		        },
+		        {
+		            "type": "file",
+		            "url": "https://github.com/FineFindus/artem/releases/download/v3.0.0/artem-v3.0.0-x86_64-unknown-linux-gnu.tar.gz",
+		            "sha256": "ae8c854a75b67d9df49fcc843f8379d85fed7980debd490d3f6ff6abc32ff171",
+		            "only-arches": [
+		                "x86_64"
+		            ]
+		        }
+		    ]
+		},
         {
-            "name": "jp2a",
-            "buildsystem": "autotools",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/Talinx/jp2a.git",
-                    "tag": "v1.2.0"
-                }
-            ]
-        },
-        {
-	    "name": "python-pillow",
-	    "buildsystem": "simple",
-	    "build-commands": [
-	    	"python3 setup.py install --prefix=/app --root=/"
-	    ],
-	    "sources": [
-	      	{
-	            "type": "git",
-	            "url": "https://github.com/python-pillow/Pillow",
-	            "tag": "10.3.0"
-	      	}
-	    ]
+		    "name": "python-pillow",
+		    "buildsystem": "simple",
+		    "build-commands": [
+		    	"python3 setup.py install --prefix=/app --root=/"
+		    ],
+		    "sources": [
+		      	{
+		            "type": "git",
+		            "url": "https://github.com/python-pillow/Pillow",
+					"tag" : "11.1.0",
+					"commit" : "4c1aed801e43c6b307e7135279ca1dbc02bbf052"
+		      	}
+		    ]
         },
         {
             "name" : "letterpress",
