@@ -80,12 +80,12 @@
             "name" : "letterpress",
             "builddir" : true,
             "buildsystem" : "meson",
-	    "run-tests" : true,
+	    	"run-tests" : true,
             "sources" : [
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/World/Letterpress",
-		    "tag" : "2.1"
+		    		"commit" : "6a56523257cf08f2d6761557bbfa28acee17f23c"
                 }
             ]
         }
